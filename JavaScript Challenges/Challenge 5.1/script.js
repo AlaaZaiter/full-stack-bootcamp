@@ -25,3 +25,35 @@ button.addEventListener("click", () => {
   // Change button text content
   button.textContent = `Clicked ${randomNumber}!`;
 });
+// Create and style the h1 element
+const h1 = document.createElement("h1");
+h1.textContent = "Hello, Challenge 5.1!";
+h1.style.border = "10px dotted green";
+
+// Add the h1 element to the body
+document.body.appendChild(h1);
+
+// Add keydown event listener
+document.addEventListener("keydown", (event) => {
+  switch (event.key) {
+    case "a":
+      h1.style.backgroundColor = "red";
+      break;
+    case "s":
+      h1.style.marginLeft = parseInt(h1.style.marginLeft, 10) + 10 + "px";
+      break;
+    case "d":
+      const newParagraph = document.createElement("p");
+      newParagraph.textContent = "Key D was pressed!";
+      document.body.appendChild(newParagraph);
+      break;
+    case "w":
+      h1.style.display = h1.style.display === "none" ? "block" : "none";
+      break;
+    case " ":
+      const currentFontSize = parseInt(getComputedStyle(h1).fontSize);
+      h1.style.fontSize = currentFontSize + 2 + "px";
+      break;
+  }
+});
+
