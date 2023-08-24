@@ -56,4 +56,66 @@ document.addEventListener("keydown", (event) => {
       break;
   }
 });
+const form = document.getElementById("myForm");
+
+// Function to show error message
+function showError(input, message) {
+  const errorDiv = input.nextElementSibling;
+  errorDiv.textContent = message;
+  errorDiv.style.display = "block";
+}
+
+// Function to show success message
+function showSuccess(input) {
+  const successDiv = input.nextElementSibling;
+  successDiv.style.display = "block";
+}
+
+// Function to validate email
+function isValidEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+// Function to check password match
+function checkPasswordsMatch(password, confirmPassword) {
+  return password === confirmPassword;
+}
+
+// Event listener for form submission
+form.addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const fullNameInput = form.elements.fullName;
+  const emailInput = form.elements.email;
+  const passwordInput = form.elements.password;
+  const confirmPasswordInput = form.elements.confirmPassword;
+
+  if (!isValidEmail(emailInput.value)) {
+    showError(emailInput, "Invalid email address");
+  } else if (!checkPasswordsMatch(passwordInput.value, confirmPasswordInput.value)) {
+    showError(confirmPasswordInput, "Passwords do not match");
+  } else {
+    showSuccess(fullNameInput);
+    showSuccess(emailInput);
+    showSuccess(passwordInput);
+    showSuccess(confirmPasswordInput);
+
+    // Display success message after validation
+    alert("Form submitted successfully!");
+  }
+});
+
+// Event listeners for input focus and blur
+const inputs = document.querySelectorAll("input");
+inputs.forEach(input => {
+  input.addEventListener("focus", () => {
+    input.style.backgroundColor = "lightyellow";
+  });
+
+  input.addEventListener("blur", () => {
+    input.style.backgroundColor = "white";
+  });
+});
+
 
