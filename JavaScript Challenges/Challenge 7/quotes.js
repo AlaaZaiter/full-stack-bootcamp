@@ -94,3 +94,94 @@ const quotesArray = [
       "Hell, there are no rules here-- we're trying to accomplish something.",
   },
 ];
+// quote.js
+
+document.addEventListener('DOMContentLoaded', () => {
+  const quoteContainer = document.getElementById('quote-container');
+  const quote = `
+    <blockquote>
+      "I think that beauty can injure you to death. It can cause an injury that can
+      never be cured. Or it can so traumatise you, your life changes direction. The
+      beauty of the harmony of nature that is forever lost, or a daily rite that you
+      perform, or diving into the sea for a swim. Those experiences are going to
+      mark you."
+      <div class="author">
+        &mdash;
+        <cite> Toni Servillo </cite>
+      </div>
+    </blockquote>
+  `;
+  quoteContainer.innerHTML = quote;
+});
+// quote.js
+
+document.addEventListener('DOMContentLoaded', () => {
+  const quoteContainer = document.getElementById('quote-container');
+  
+  const quotes = [
+    {
+      text: "Quote 1 text...",
+      author: "Author 1",
+    },
+    {
+      text: "Quote 2 text...",
+      author: "Author 2",
+    },
+    // Add more quotes as needed
+  ];
+
+  let quotesHTML = '';
+
+  quotes.forEach(quote => {
+    quotesHTML += `
+      <blockquote>
+        "${quote.text}"
+        <div class="author">
+          &mdash;
+          <cite>${quote.author}</cite>
+        </div>
+      </blockquote>
+    `;
+  });
+
+  quoteContainer.innerHTML = quotesHTML;
+});
+// quote.js
+
+document.addEventListener('DOMContentLoaded', () => {
+  const quoteContainer = document.getElementById('quote-container');
+  const filterInput = document.getElementById('filter-input');
+
+  const quotes = [
+    // ...
+  ];
+
+  function updateQuotes(filterText = '') {
+    let filteredQuotes = quotes.filter(quote =>
+      quote.author.toLowerCase().includes(filterText.toLowerCase())
+    );
+
+    let quotesHTML = '';
+
+    filteredQuotes.forEach(quote => {
+      quotesHTML += `
+        <blockquote>
+          "${quote.text}"
+          <div class="author">
+            &mdash;
+            <cite>${quote.author}</cite>
+          </div>
+        </blockquote>
+      `;
+    });
+
+    quoteContainer.innerHTML = quotesHTML;
+  }
+
+  filterInput.addEventListener('input', () => {
+    updateQuotes(filterInput.value);
+  });
+
+  // Initial quotes display
+  updateQuotes();
+});
